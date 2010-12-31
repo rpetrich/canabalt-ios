@@ -45,24 +45,24 @@ typedef enum {
   BOOL animated;
   GLubyte * data;
 }
-@property (readonly) GLuint texture;
-@property (readonly) CGSize size;
-@property (readonly) CGSize paddedSize;
-@property (readonly) CGPoint offset;
+@property (nonatomic, readonly) GLuint texture;
+@property (nonatomic, readonly) CGSize size;
+@property (nonatomic, readonly) CGSize paddedSize;
+@property (nonatomic, readonly) CGPoint offset;
 
-@property (readonly) unsigned int width;
-@property (readonly) unsigned int height;
-@property (readonly) unsigned int paddedWidth;
-@property (readonly) unsigned int paddedHeight;
+@property (nonatomic, readonly) unsigned int width;
+@property (nonatomic, readonly) unsigned int height;
+@property (nonatomic, readonly) unsigned int paddedWidth;
+@property (nonatomic, readonly) unsigned int paddedHeight;
 
-@property (readonly) unsigned int frames;
-@property (readonly) GLshort * vertices;
-@property (readonly) GLshort * texCoords;
-@property (assign) BOOL animated;
+@property (nonatomic, readonly) unsigned int frames;
+@property (nonatomic, readonly) GLshort * vertices;
+@property (nonatomic, readonly) GLshort * texCoords;
+@property (nonatomic, assign) BOOL animated;
 
-@property (readonly) SemiSecretTexture * atlasTexture;
-@property (readonly) CGPoint atlasOffset;
-@property (readonly) CGPoint atlasScale;
+@property (nonatomic, readonly) SemiSecretTexture * atlasTexture;
+@property (nonatomic, readonly) CGPoint atlasOffset;
+@property (nonatomic, readonly) CGPoint atlasScale;
 
 + (void) setTextureFilteringMode:(SSTextureFiltering)filtering;
 + (SSTextureFiltering) textureFilteringMode;

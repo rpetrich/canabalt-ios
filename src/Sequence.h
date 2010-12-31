@@ -86,7 +86,7 @@
 - (void) initSequence:(Sequence *)sequence;
 
 //@property (readonly) NSArray * blocks;
-@property (readonly) FlxGroup * blocks;
+@property (nonatomic, readonly) FlxGroup * blocks;
 
 @end
 

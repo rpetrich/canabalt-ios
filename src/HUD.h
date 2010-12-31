@@ -24,5 +24,5 @@
 }
 + (id) hudWithFrame:(CGRect)frame;
 - (id) initWithFrame:(CGRect)frame;
-@property NSUInteger distance;
+@property (nonatomic) NSUInteger distance;
 @end

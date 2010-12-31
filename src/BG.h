@@ -19,5 +19,5 @@
 }
 + (id) bgWithImage:(NSString *)image;
 - (id) initWithX:(float)X y:(float)Y graphic:(NSString *)graphic;
-@property BOOL random;
+@property (nonatomic) BOOL random;
 @end

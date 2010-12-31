@@ -30,6 +30,6 @@
 - (void) setGlyphs:(CGGlyph *)glyphs forCharacters:(unichar *)chars size:(NSUInteger)length;
 - (void) renderText:(NSString *)text centeredAtPoint:(CGPoint) point inContext:(CGContextRef)context;
 
-@property (readonly) CGFloat size;
-@property (readonly) CGFontRef font;
+@property (nonatomic, readonly) CGFloat size;
+@property (nonatomic, readonly) CGFontRef font;
 @end

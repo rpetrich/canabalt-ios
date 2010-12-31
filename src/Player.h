@@ -33,11 +33,11 @@
 + (id) playerWithSpeedy:(BOOL)isSpeedy;
 - (id) initWithSpeedy:(BOOL)isSpeedy;
 
-@property CGFloat jumpLimit;
-@property BOOL stumble;
-@property BOOL craneFeet;
-@property (copy) NSString * epitaph;
-@property BOOL pause;
-@property (readonly, getter=isSpeedy) BOOL speedy;
+@property (nonatomic) CGFloat jumpLimit;
+@property (nonatomic) BOOL stumble;
+@property (nonatomic) BOOL craneFeet;
+@property (nonatomic, copy) NSString * epitaph;
+@property (nonatomic) BOOL pause;
+@property (nonatomic, readonly, getter=isSpeedy) BOOL speedy;
 
 @end

@@ -27,15 +27,17 @@
   BOOL craneFeet;
   NSString * epitaph;
   BOOL pause;
+  BOOL speedy;
 }
 
-+ (id) player;
-- (id) init;
++ (id) playerWithSpeedy:(BOOL)isSpeedy;
+- (id) initWithSpeedy:(BOOL)isSpeedy;
 
 @property CGFloat jumpLimit;
 @property BOOL stumble;
 @property BOOL craneFeet;
 @property (copy) NSString * epitaph;
 @property BOOL pause;
+@property (readonly, getter=isSpeedy) BOOL speedy;
 
 @end

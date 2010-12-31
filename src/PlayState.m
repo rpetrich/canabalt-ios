@@ -57,9 +57,10 @@ static CGRect pauseRect = { .origin = { .x = 0, .y = 0 },
 
 @implementation PlayState
 
-- (id) init
+- (id) initWithSpeedy:(BOOL)isSpeedy
 {
   if ((self = [super init])) {
+	speedy = isSpeedy;
     self.bgColor = 0xffb0b0bf;
     [[FlxG quake] setScale:CGPointMake(0, 1)];
   }
@@ -225,7 +226,7 @@ static CGRect pauseRect = { .origin = { .x = 0, .y = 0 },
   [FlxG followBoundsWithParam1:0 param2:0 param3:INT_MAX param4:480];
   [FlxG followAdjustWithParam1:1.5 param2:0];
 
-  player = [Player player];
+  player = [Player playerWithSpeedy:speedy];
 
   //Infinite level sequence objects
 #ifdef GLASS_SHARDS

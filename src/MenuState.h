@@ -20,6 +20,8 @@
   FlxSprite * title2;
   FlxButton * about;
   FlxButton * play;
+  FlxButton * speed;
+  FlxText * speedText;
   int state;
   int scoreState;
   
@@ -41,6 +43,7 @@
   BOOL touchBeganInMusic;
   BOOL touchEndedInMusic;
 
+  BOOL isSpeedy;
 }
 
 @end

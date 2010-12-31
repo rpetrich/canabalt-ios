@@ -23,6 +23,7 @@
 
 @interface PlayState : FlxState
 {
+  BOOL speedy;
   Player * player;
   FlxSprite * focus;
   HUD * dist;
@@ -58,5 +59,7 @@
   BOOL firstTimeThroughUpdateLoop;
   DoveGroup * doveGroup;
 }
+
+- (id)initWithSpeedy:(BOOL)isSpeedy;
 
 @end

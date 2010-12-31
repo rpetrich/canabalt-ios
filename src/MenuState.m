@@ -80,6 +80,11 @@ enum {
   return self;
 }
 
+- (void) updateSpeedText
+{
+	speedText.text = isSpeedy ? NSLocalizedString(@"Speedy", @"Speedy") : NSLocalizedString(@"Classic", @"Classic");
+}
+
 - (void) create
 {
   
@@ -113,6 +118,21 @@ enum {
   about.visible = NO;
   [self add:about];
 
+  speed = [[[FlxButton alloc] initWithX:FlxG.width / 2 - 60
+									  y:FlxG.height-36
+							   callback:[FlashFunction functionWithTarget:self
+																   action:@selector(onSpeed)]] autorelease];
+  [speed loadGraphic:[FlxSprite spriteWithGraphic:ImgButton]];
+  speedText = [FlxText textWithWidth:speed.width
+								text:@""
+								font:nil
+								size:16.0];
+  [speed loadText:speedText];
+  [self updateSpeedText];
+  speed.visible = NO;
+  [self add:speed];
+	
+	
   play = [[[FlxButton alloc] initWithX:FlxG.width-128
 			     y:FlxG.height-36
 			     callback:[FlashFunction functionWithTarget:self
@@ -363,6 +383,7 @@ enum {
 
   if (!play.visible && title.velocity.y == 0 && state == MENU) {
     play.visible = YES;
+	speed.visible = YES;
     about.visible = YES;
     if (nowPlaying) {
       nowPlaying.visible = YES;
@@ -391,7 +412,7 @@ enum {
 
   state = PLAY;
 
-  FlxG.state = [[[PlayState alloc] init] autorelease];
+  FlxG.state = [[[PlayState alloc] initWithSpeedy:isSpeedy] autorelease];
 
   NSNumber * musicSelection = [[NSUserDefaults standardUserDefaults] objectForKey:MUSIC_SELECTION];
   if (musicSelection == nil || [musicSelection intValue] == RUN_TRACK)
@@ -412,6 +433,8 @@ enum {
   [self move:title2 toPoint:CGPointMake(title2.x-FlxG.width, title2.y)
 	duration:duration];
   [self move:play toPoint:CGPointMake(play.x-FlxG.width, play.y)
+	duration:duration];
+  [self move:speed toPoint:CGPointMake(speed.x-FlxG.width, play.y)
 	duration:duration];
   [self move:about toPoint:CGPointMake(about.x-FlxG.width, about.y)
 	duration:duration];
@@ -440,6 +463,12 @@ enum {
   
 }
 
+- (void) onSpeed
+{
+  isSpeedy = !isSpeedy;
+  [self updateSpeedText];
+}
+
 - (void) onBack
 {
   if (state == ABOUT) {
@@ -447,6 +476,8 @@ enum {
     [self move:title2 toPoint:CGPointMake(title2.x+FlxG.width, title2.y)
 	  duration:duration];
     [self move:play toPoint:CGPointMake(play.x+FlxG.width, play.y)
+	  duration:duration];
+	[self move:speed toPoint:CGPointMake(speed.x+FlxG.width, play.y)
 	  duration:duration];
     [self move:about toPoint:CGPointMake(about.x+FlxG.width, about.y)
 	  duration:duration];

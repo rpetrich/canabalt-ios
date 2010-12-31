@@ -421,7 +421,11 @@ enum {
 
   int hallHeight = 0;
   if (type == HALLWAY) {
-    if (player.velocity.x > 640)
+	if (player.velocity.x > 1280)
+	  hallHeight = 9;
+	else if (player.velocity.x > 960)
+	  hallHeight = 8;
+    else if (player.velocity.x > 640)
       hallHeight = 7;
     else if (player.velocity.x > 480)
       hallHeight = 6;

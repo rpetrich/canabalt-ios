@@ -39,15 +39,17 @@ static NSString * ImgPlayer = @"player2.png";
 @synthesize craneFeet;
 @synthesize epitaph;
 @synthesize pause;
+@synthesize speedy;
 
-+ (id) player
++ (id) playerWithSpeedy:(BOOL)isSpeedy
 {
-  return [[[self alloc] init] autorelease];
+  return [[[self alloc] initWithSpeedy:isSpeedy] autorelease];
 }
 
-- (id) init
+- (id) initWithSpeedy:(BOOL)isSpeedy
 {
   if ((self = [super initWithX:0 y:0 graphic:nil])) {
+	speedy = isSpeedy;
 
     [self loadGraphicWithParam1:ImgPlayer param2:YES param3:NO param4:30 param5:30];
     
@@ -74,13 +76,16 @@ static NSString * ImgPlayer = @"player2.png";
     //self.drag = CGPointMake(640, self.drag.y);
 
     acceleration.x = 1;
-    acceleration.y = 1200;
-    //self.acceleration = CGPointMake(1,1200);
-    maxVelocity.x = 1000;
-    maxVelocity.y = 360;
-    //self.maxVelocity = CGPointMake(1000, 360);
-    velocity.x = 125;
-    //self.velocity = CGPointMake(125, self.velocity.y);
+	acceleration.y = 1200;
+	if (isSpeedy) {
+      maxVelocity.x = 2000;
+      maxVelocity.y = 500;
+      velocity.x = 250;
+	} else {
+	  maxVelocity.x = 1000;
+	  maxVelocity.y = 360;
+	  velocity.x = 125;
+	}
     my = 0;
 
     fc = 0;
@@ -139,12 +144,21 @@ static NSString * ImgPlayer = @"player2.png";
     return [super update];
 
   //speed & acceleration
-  if (velocity.x < 0) velocity.x = 0;
-  else if (velocity.x < 100) acceleration.x = 60;
-  else if (velocity.x < 250) acceleration.x = 36;
-  else if (velocity.x < 400) acceleration.x = 24;
-  else if (velocity.x < 600) acceleration.x = 12;
-  else acceleration.x = 4;
+  if (speedy) {
+    if (velocity.x < 0) velocity.x = 0;
+    else if (velocity.x < 200) acceleration.x = 60;
+    else if (velocity.x < 500) acceleration.x = 36;
+    else if (velocity.x < 800) acceleration.x = 24;
+    else if (velocity.x < 1200) acceleration.x = 12;
+    else acceleration.x = 4;
+  } else {
+	if (velocity.x < 0) velocity.x = 0;
+	else if (velocity.x < 100) acceleration.x = 60;
+	else if (velocity.x < 250) acceleration.x = 36;
+	else if (velocity.x < 400) acceleration.x = 24;
+	else if (velocity.x < 600) acceleration.x = 12;
+	else acceleration.x = 4;
+  }
 
   //jumping
   jumpLimit = velocity.x / (maxVelocity.x * 2.5);
